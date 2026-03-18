@@ -287,13 +287,10 @@ def base_layout(**kwargs):
         plot_bgcolor='#ffffff',
         font=dict(color='#1a1d2e', family='Syne'),
         margin=dict(t=64, b=56, l=60, r=28),
-        title_font=TITLE_FONT, title_x=0.0,
-        shapes=[dict(
-            type='rect', xref='paper', yref='paper',
-            x0=0, y0=0, x1=1, y1=1,
-            line=dict(color='#d6dae8', width=1.5),
-            fillcolor='rgba(0,0,0,0)', layer='above',
-        )],
+        title_font_size=TITLE_FONT['size'],
+        title_font_color=TITLE_FONT['color'],
+        title_font_family=TITLE_FONT['family'],
+        title_x=0.0,
     )
     d.update(kwargs)
     return d
@@ -370,7 +367,6 @@ def render_canteen_pie(df: pd.DataFrame):
             font=dict(color='#2a2e45', size=13, family='Syne'),
         ),
         margin=dict(t=64, b=36, l=10, r=170),
-        shapes=[],
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
     ))
@@ -425,7 +421,6 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
             title='Dotácie vs Vlastné výdavky',
             legend=dict(orientation='v', x=1.02, y=0.5, font=dict(color='#2a2e45', size=13, family='Syne')),
             margin=dict(t=64, b=36, l=10, r=150),
-            shapes=[],
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
         ))
@@ -466,35 +461,43 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
                 annotation_position='top right',
             )
         fig_hist.update_layout(
-            title=dict(text='Histogram denných útrat (súčet účtov za deň)', font=dict(size=22, color='#1a1d2e', family='Syne'), x=0.0),
             paper_bgcolor='#ffffff',
             plot_bgcolor='#ffffff',
             font=dict(color='#1a1d2e', family='Syne'),
             margin=dict(t=64, b=64, l=60, r=40),
             bargap=0.04,
             barmode='overlay',
-            xaxis=dict(
-                title=dict(text='Denná útrata (€)', font=dict(size=12, color='#5a5f7a', family='Syne')),
-                tickfont=dict(size=11, color='#5a5f7a', family='Syne'),
-                gridcolor='#e0e4ee',
-                linecolor='#c8cde0',
-                linewidth=1,
-                showline=True,
-                zeroline=True,
-                zerolinecolor='#c8cde0',
-                zerolinewidth=1,
-            ),
-            yaxis=dict(
-                title=dict(text='Počet dní', font=dict(size=12, color='#5a5f7a', family='Syne')),
-                tickfont=dict(size=11, color='#5a5f7a', family='Syne'),
-                gridcolor='#e0e4ee',
-                linecolor='#c8cde0',
-                linewidth=1,
-                showline=True,
-                zeroline=True,
-                zerolinecolor='#c8cde0',
-                zerolinewidth=1,
-            ),
+        )
+        fig_hist.update_layout(
+            title='Histogram denných útrat (súčet účtov za deň)',
+        )
+        fig_hist.update_xaxes(
+            title_text='Denná útrata (€)',
+            tickfont=dict(size=11, color='#5a5f7a', family='Syne'),
+            gridcolor='#e0e4ee',
+            linecolor='#c8cde0',
+            linewidth=1,
+            showline=True,
+            zeroline=True,
+            zerolinecolor='#c8cde0',
+            zerolinewidth=1,
+        )
+        fig_hist.update_yaxes(
+            title_text='Počet dní',
+            tickfont=dict(size=11, color='#5a5f7a', family='Syne'),
+            gridcolor='#e0e4ee',
+            linecolor='#c8cde0',
+            linewidth=1,
+            showline=True,
+            zeroline=True,
+            zerolinecolor='#c8cde0',
+            zerolinewidth=1,
+        )
+        fig_hist.update_layout(
+            title_font_size=22,
+            title_font_color='#1a1d2e',
+            title_font_family='Syne',
+            title_x=0.0,
         )
         st.plotly_chart(fig_hist, use_container_width=True)
         st.markdown(
