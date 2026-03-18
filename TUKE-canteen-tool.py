@@ -288,7 +288,6 @@ def base_layout(**kwargs):
         font=dict(color='#1a1d2e', family='Syne'),
         margin=dict(t=64, b=56, l=60, r=28),
         title_font=TITLE_FONT, title_x=0.0,
-        title_pad=dict(l=4, t=4),
         shapes=[dict(
             type='rect', xref='paper', yref='paper',
             x0=0, y0=0, x1=1, y1=1,
@@ -465,15 +464,9 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
                 annotation_text=f'{lim} €',
                 annotation_font=dict(color='#1a1d2e', size=12, family='Syne'),
                 annotation_position='top right',
-                annotation_bgcolor='rgba(0,0,0,0)',
-                annotation_borderpad=3,
             )
-        HIST_GRID = '#e0e4ee'
         fig_hist.update_layout(
-            title='Histogram denných útrat (súčet účtov za deň)',
-            title_font=dict(size=22, color='#1a1d2e', family='Syne'),
-            title_x=0.0,
-            title_pad=dict(l=4, t=4),
+            title=dict(text='Histogram denných útrat (súčet účtov za deň)', font=dict(size=22, color='#1a1d2e', family='Syne'), x=0.0),
             paper_bgcolor='#ffffff',
             plot_bgcolor='#ffffff',
             font=dict(color='#1a1d2e', family='Syne'),
@@ -481,10 +474,9 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
             bargap=0.04,
             barmode='overlay',
             xaxis=dict(
-                title='Denná útrata (€)',
-                titlefont=dict(size=12, color='#5a5f7a', family='Syne'),
+                title=dict(text='Denná útrata (€)', font=dict(size=12, color='#5a5f7a', family='Syne')),
                 tickfont=dict(size=11, color='#5a5f7a', family='Syne'),
-                gridcolor=HIST_GRID,
+                gridcolor='#e0e4ee',
                 linecolor='#c8cde0',
                 linewidth=1,
                 showline=True,
@@ -493,10 +485,9 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
                 zerolinewidth=1,
             ),
             yaxis=dict(
-                title='Počet dní',
-                titlefont=dict(size=12, color='#5a5f7a', family='Syne'),
+                title=dict(text='Počet dní', font=dict(size=12, color='#5a5f7a', family='Syne')),
                 tickfont=dict(size=11, color='#5a5f7a', family='Syne'),
-                gridcolor=HIST_GRID,
+                gridcolor='#e0e4ee',
                 linecolor='#c8cde0',
                 linewidth=1,
                 showline=True,
@@ -504,7 +495,6 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
                 zerolinecolor='#c8cde0',
                 zerolinewidth=1,
             ),
-            shapes=[],
         )
         st.plotly_chart(fig_hist, use_container_width=True)
         st.markdown(
@@ -677,6 +667,22 @@ df_all = st.session_state.get('df_submitted')
 
 if df_all is None or df_all.empty:
     st.info("👆 Vložte dáta a kliknite na **Analyzovať**.")
+    # ── Footer (no data state) ────────────────────────────────────────────────
+    st.markdown("""
+    <div style='
+        margin-top: 60px;
+        padding: 16px 0 8px 0;
+        border-top: 1px solid #d6dae8;
+        text-align: center;
+        color: #b0b6c8;
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        line-height: 1.8;
+    '>
+        Samuel Kapitančík &nbsp;·&nbsp; Peter Zeleňák &nbsp;·&nbsp; 2026<br>
+        <span style='font-size:0.68rem; color:#c8cdd8;'>© chlapci z ústavu</span>
+    </div>
+    """, unsafe_allow_html=True)
     st.stop()
 
 available_years = sorted(df_all['year'].unique(), reverse=True)
