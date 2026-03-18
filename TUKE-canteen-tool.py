@@ -370,7 +370,7 @@ def render_canteen_pie(df: pd.DataFrame):
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
     ))
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key=f"canteen_pie_{year}")
 
 
 def render_stats_and_charts(df: pd.DataFrame, year: int = None):
@@ -424,7 +424,7 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
         ))
-        st.plotly_chart(fig_pie, use_container_width=True)
+        st.plotly_chart(fig_pie, use_container_width=True, key=f"dotacie_pie_{year}")
 
     with col_b:
         render_canteen_pie(df)
@@ -499,7 +499,7 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
             title_font_family='Syne',
             title_x=0.0,
         )
-        st.plotly_chart(fig_hist, use_container_width=True)
+        st.plotly_chart(fig_hist, use_container_width=True, key=f"histogram_{year}")
         st.markdown(
             "<div style='font-size:0.8rem;color:#6b749e;display:flex;align-items:center;gap:12px;'>"
             "<span style='color:#5a5f7a;font-size:0.88rem;'>Gradient v segmente:</span>"
@@ -557,7 +557,7 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
         tickfont=dict(color='#5a5f7a', family='Syne'),
         gridcolor=GRID_COL,
     )
-    st.plotly_chart(fig_m, use_container_width=True)
+    st.plotly_chart(fig_m, use_container_width=True, key=f"monthly_{year}")
 
     # Raw table
     with st.expander("🔍 Zobraziť surové transakcie"):
