@@ -707,7 +707,7 @@ st.divider()
 YEAR_RATINGS = [
     (54, "🤩", "Výborne! Dotácie ti kryjú väčšinu nákladov.",          "#48d282"),
     (52, "😄", "Skvelý rok – využívaš dotácie nad priemer.",            "#7fd46a"),
-    (49, "🙂", "Slušný výsledok, ešte je priestor na zlepšenie.",      "#c8d040"),
+    (46, "🙂", "Slušný výsledok, ešte je priestor na zlepšenie.",      "#c8d040"),
     (42, "😐", "Priemerné hospodárenie – treba si to počítať bratu.",          "#ffc83c"),
     (36, "😕", "Pod priemerom – matika nie je tvoja silná stránka.",          "#ff8c42"),
     ( 0, "😢", "Dotácie pokrývajú málo – prehodnoť svoje životné rozhodnutia.",    "#ff4b5a"),
