@@ -542,13 +542,21 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
 
     fig_m.update_layout(**base_layout(
         title='Mesačné čisté výdavky  (účty − dotácie)',
-        xaxis=dict(title='Mesiac', titlefont=AXIS_FONT,
-                   tickfont=dict(color='#5a5f7a', family='Syne'), gridcolor=GRID_COL),
-        yaxis=dict(title='Čisté výdavky (€)', titlefont=AXIS_FONT,
-                   tickfont=dict(color='#5a5f7a', family='Syne'), gridcolor=GRID_COL),
         barmode='group',
         legend=dict(orientation='h', y=1.06, font=dict(color='#2a2e45', size=14, family='Syne')),
     ))
+    fig_m.update_xaxes(
+        title_text='Mesiac',
+        title_font=dict(size=12, color='#5a5f7a', family='Syne'),
+        tickfont=dict(color='#5a5f7a', family='Syne'),
+        gridcolor=GRID_COL,
+    )
+    fig_m.update_yaxes(
+        title_text='Čisté výdavky (€)',
+        title_font=dict(size=12, color='#5a5f7a', family='Syne'),
+        tickfont=dict(color='#5a5f7a', family='Syne'),
+        gridcolor=GRID_COL,
+    )
     st.plotly_chart(fig_m, use_container_width=True)
 
     # Raw table
