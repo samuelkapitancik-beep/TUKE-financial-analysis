@@ -338,7 +338,7 @@ def render_missed_section(df: pd.DataFrame):
                 unsafe_allow_html=True)
 
 
-def render_canteen_pie(df: pd.DataFrame):
+def render_canteen_pie(df: pd.DataFrame, year=None):
     ucty = df[df['type'] == 'účet'].copy()
     ucty['price'] = ucty['amount'].abs()
     ucty['canteen'] = ucty['canteen'].fillna('Iné')
@@ -427,7 +427,7 @@ def render_stats_and_charts(df: pd.DataFrame, year: int = None):
         st.plotly_chart(fig_pie, use_container_width=True, key=f"dotacie_pie_{year}")
 
     with col_b:
-        render_canteen_pie(df)
+        render_canteen_pie(df, year=year)
 
     # Row 2: Histogram
     st.divider()
