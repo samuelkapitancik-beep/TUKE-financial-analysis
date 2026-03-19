@@ -651,7 +651,7 @@ if 'df_submitted' not in st.session_state:
 
 # ── Input area ────────────────────────────────────────────────────────────────
 raw_input = st.text_area(
-    "Skopírujte sem všetky transakce z histórie účtu na portáli jedalen.tuke.sk:",
+    "Skopírujte sem všetky transakcie z histórie účtu na portáli jedalen.tuke.sk:",
     value=st.session_state['raw_text'],
     height=200,
     key="input_area",
